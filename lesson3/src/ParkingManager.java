@@ -4,14 +4,20 @@ import java.util.List;
 public class ParkingManager extends Parker{
     public List<Parker> parkers = new ArrayList<Parker>();
 
-    public Parker choose() {
+    public Parker chooseParker() {
         if (parkers.size()==0)return null;
-        return parkers.get(0);
+        for (Parker parker : parkers){
+            if (parker.getClass() == ParkingManager.class){
+                return ((ParkingManager) parker).chooseParker();
+            }
+            if(parker.isAvailable())return parker;
+        }
+        return null;
     }
 
     @Override
     public boolean park(Car car) {
-        Parker parker = choose();
+        Parker parker = chooseParker();
         if(parker == null) {
            return super.park(car);
         }

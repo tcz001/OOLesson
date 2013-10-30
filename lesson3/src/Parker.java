@@ -24,12 +24,21 @@ public class Parker {
     }
 
     public Car pickUp(Car car) {
-        for(ParkingLot currentParkingLots : parkingLots) {
-            if(currentParkingLots.cars.contains(car)){
+        for (ParkingLot currentParkingLots : parkingLots) {
+            if (currentParkingLots.cars.contains(car)) {
                 currentParkingLots.cars.remove(car);
                 return car;
             }
         }
         return null;
+    }
+
+    public boolean isAvailable() {
+        for (ParkingLot currentParkingLots : parkingLots) {
+            if (!currentParkingLots.isFull()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
