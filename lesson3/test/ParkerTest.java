@@ -1,5 +1,8 @@
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 /**
  * User: twer
  * Date: 10/22/13
@@ -11,6 +14,15 @@ public class ParkerTest {
         Parker parker = new Parker();
         Car car = new Car("myCar");
         parker.parkingLots.add(new ParkingLot(2));
+        assertThat(parker.park(car), is(true));
+    }
+
+    @Test
+    public void shouldPickUpCar() throws Exception {
+        Parker parker = new Parker();
+        Car car = new Car("myCar");
+        parker.parkingLots.add(new ParkingLot(2));
         parker.park(car);
+        assertThat(parker.pickUp(car), is(car));
     }
 }

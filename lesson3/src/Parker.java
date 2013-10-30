@@ -19,7 +19,15 @@ public class Parker {
         this.parkingChooser = parkingChooser;
     }
 
-    public void park(Car car) {
-        parkingChooser.choose(parkingLots).checkIn(car);
+    public boolean park(Car car) {
+        return parkingChooser.choose(parkingLots).checkIn(car);
+    }
+
+    public Car pickUp(Car car) {
+        for(ParkingLot currentParkingLots : parkingLots) {
+            if(currentParkingLots.cars.contains(car))
+                return car;
+        }
+        return null;
     }
 }
