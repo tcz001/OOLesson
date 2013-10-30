@@ -1,4 +1,3 @@
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -39,14 +38,4 @@ public class ParkingLotTest {
 
         assertThat(parkingLot.checkIn(new Car("Fan")),is(false));
     }
-
-    @Test @Ignore
-    public void testGuardAutoAssignment() throws Exception {
-        ParkingLot parkingLot = new ParkingLot(1);
-        Parker parker = new Parker();
-        parkingLot.checkIn(new Car("Frank"));
-
-        assertThat(parkingLot.checkIn(new Car("Fan")), is(false));
-    }
-
 }
