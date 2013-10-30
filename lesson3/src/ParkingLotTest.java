@@ -11,9 +11,16 @@ import static org.junit.Assert.assertThat;
  */
 public class ParkingLotTest {
     @Test
-    public void testParking() throws Exception {
+    public void testCheckIn() throws Exception {
         ParkingLot parkingLot = new ParkingLot(5);
-        assertThat(parkingLot.park(new Car("Fan")), is(true));
+        assertThat(parkingLot.checkIn(new Car("Fan")), is(true));
+    }
+    @Test
+    public void testCheckOut() throws Exception {
+        ParkingLot parkingLot = new ParkingLot(5);
+        assertThat(parkingLot.checkIn(new Car("Fan")), is(true));
+        assertThat(parkingLot.checkOut(new Car("Fan")), is(true));
+        assertThat(parkingLot.cars.size(), is(0));
     }
 
     @Test
@@ -28,18 +35,18 @@ public class ParkingLotTest {
     @Test
     public void testUpperBound() throws Exception {
         ParkingLot parkingLot = new ParkingLot(1);
-        parkingLot.park(new Car("Frank"));
+        parkingLot.checkIn(new Car("Frank"));
 
-        assertThat(parkingLot.park(new Car("Fan")),is(false));
+        assertThat(parkingLot.checkIn(new Car("Fan")),is(false));
     }
 
     @Test @Ignore
     public void testGuardAutoAssignment() throws Exception {
         ParkingLot parkingLot = new ParkingLot(1);
-        Guard guard = new Guard();
-        parkingLot.park(new Car("Frank"));
+        Parker parker = new Parker();
+        parkingLot.checkIn(new Car("Frank"));
 
-        assertThat(parkingLot.park(new Car("Fan")), is(false));
+        assertThat(parkingLot.checkIn(new Car("Fan")), is(false));
     }
 
 }

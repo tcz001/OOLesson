@@ -6,7 +6,7 @@ import java.util.HashSet;
  * Time: 5:31 PM
  */
 public class ParkingLot {
-    private int maximum;
+    int maximum;
     HashSet<Car> cars;
 
     public ParkingLot(int i) throws Exception {
@@ -18,12 +18,28 @@ public class ParkingLot {
         }
     }
 
-    public boolean park(Car car) {
-        if (cars.size() == maximum) return false;
+    public boolean checkIn(Car car) {
+        if (isFull()) return false;
         else {
             cars.add(car);
             return true;
         }
+    }
+
+    public Boolean checkOut(Car car) {
+        return cars.remove(car);
+    }
+
+    boolean isFull() {
+        return getAvailable()==0;
+    }
+
+    int getAvailable(){
+        return maximum-cars.size();
+    }
+
+    double getUsage(){
+        return (double) cars.size()/ (double) maximum;
     }
 
     class LowerBoundException extends Exception {
