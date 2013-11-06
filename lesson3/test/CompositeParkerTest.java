@@ -34,7 +34,7 @@ public class CompositeParkerTest {
         parkingManager.parkingLots.add(new ParkingLot(2));
         parkingManager.parkingLots.add(new ParkingLot(2));
         assertThat(parkingManager.park(car), is(true));
-        assertThat(parkingManager.pickUp(car), is(car));
+        assertThat(parkingManager.unPark(car), is(car));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class CompositeParkerTest {
         parkingManager.parkers.add(parker2);
         parkingManager.park(car);
 
-        assertThat(parker.pickUp(car), is(car));
+        assertThat(parker.unPark(car), is(car));
     }
 
     @Test
@@ -54,8 +54,8 @@ public class CompositeParkerTest {
         parkingManager.parkers.add(parker);
 
         assertThat(parkingManager.park(car), is(true));
-        assertThat(parkingManager.pickUp(car), is(car));
-        assertThat(parkingManager.pickUp(car), is((Car)null));
+        assertThat(parkingManager.unPark(car), is(car));
+        assertThat(parkingManager.unPark(car), is((Car)null));
     }
 
     @Test
@@ -64,12 +64,12 @@ public class CompositeParkerTest {
         bigBoss.parkers.add(parkingManager);
 
         assertThat(bigBoss.park(car), is(true));
-        assertThat(bigBoss.pickUp(car), is(car));
+        assertThat(bigBoss.unPark(car), is(car));
 
         assertThat(bigBoss.park(car), is(true));
-        assertThat(parkingManager.pickUp(car), is(car));
+        assertThat(parkingManager.unPark(car), is(car));
 
         assertThat(bigBoss.park(car), is(true));
-        assertThat(parker.pickUp(car), is(car));
+        assertThat(parker.unPark(car), is(car));
     }
 }

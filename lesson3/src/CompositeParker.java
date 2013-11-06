@@ -17,6 +17,7 @@ public class CompositeParker implements ParkAble {
         return null;
     }
 
+    @Override
     public boolean park(Car car) {
         ParkAble parker = chooseParker();
         if(parker == null) {
@@ -27,10 +28,11 @@ public class CompositeParker implements ParkAble {
         }
     }
 
-    public Car pickUp(Car car) {
+    @Override
+    public Car unPark(Car car) {
         Car returnCar;
         for (ParkAble parker : parkers){
-            returnCar = parker.pickUp(car);
+            returnCar = parker.unPark(car);
             if(returnCar == car)
                 return returnCar;
         }
@@ -43,6 +45,7 @@ public class CompositeParker implements ParkAble {
         return null;
     }
 
+    @Override
     public boolean isAvailable() {
         for (ParkingLot currentParkingLots : parkingLots) {
             if (!currentParkingLots.isFull()) {

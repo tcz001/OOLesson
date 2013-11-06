@@ -23,6 +23,6 @@ public class ParkerTest {
         Car car = new Car("myCar");
         parker.parkingLots.add(new ParkingLot(2));
         parker.park(car);
-        assertThat(parker.pickUp(car), is(car));
+        assertThat(parker.unPark(car), is(car));
     }
 }

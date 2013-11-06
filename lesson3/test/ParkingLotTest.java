@@ -18,7 +18,7 @@ public class ParkingLotTest {
     public void testCheckOut() throws Exception {
         ParkingLot parkingLot = new ParkingLot(5);
         assertThat(parkingLot.park(new Car("Fan")), is(true));
-        assertThat(parkingLot.unPark(new Car("Fan")), is(true));
+        assertThat(parkingLot.unPark(new Car("Fan")), is(new Car("Fan")));
         assertThat(parkingLot.cars.size(), is(0));
     }
 

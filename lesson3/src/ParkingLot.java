@@ -5,7 +5,7 @@ import java.util.HashSet;
  * Date: 10/21/13
  * Time: 5:31 PM
  */
-public class ParkingLot {
+public class ParkingLot implements ParkAble{
     int maximum;
     HashSet<Car> cars;
 
@@ -18,6 +18,7 @@ public class ParkingLot {
         }
     }
 
+    @Override
     public boolean park(Car car) {
         if (isFull()) return false;
         else {
@@ -26,8 +27,16 @@ public class ParkingLot {
         }
     }
 
-    public Boolean unPark(Car car) {
-        return cars.remove(car);
+    @Override
+    public Car unPark(Car car) {
+        if (cars.remove(car))
+            return car;
+        else return null;
+    }
+
+    @Override
+    public boolean isAvailable() {
+        return !isFull();
     }
 
     boolean isFull() {

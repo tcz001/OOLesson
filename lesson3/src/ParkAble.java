@@ -6,7 +6,7 @@
 public interface ParkAble {
     boolean park(Car car);
 
-    Car pickUp(Car car);
+    Car unPark(Car car);
 
     boolean isAvailable();
 }
