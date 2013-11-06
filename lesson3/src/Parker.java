@@ -5,9 +5,7 @@ import java.util.ArrayList;
  * Date: 10/21/13
  * Time: 6:13 PM
  */
-public class Parker {
-    ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
-    ParkingChooser parkingChooser = new SmartChooser();
+public class Parker extends CompositeParker {
 
     public Parker() {
         parkingLots = new ArrayList<ParkingLot>();
@@ -19,26 +17,4 @@ public class Parker {
         this.parkingChooser = parkingChooser;
     }
 
-    public boolean park(Car car) {
-        return parkingChooser.choose(parkingLots).checkIn(car);
-    }
-
-    public Car pickUp(Car car) {
-        for (ParkingLot currentParkingLots : parkingLots) {
-            if (currentParkingLots.cars.contains(car)) {
-                currentParkingLots.cars.remove(car);
-                return car;
-            }
-        }
-        return null;
-    }
-
-    public boolean isAvailable() {
-        for (ParkingLot currentParkingLots : parkingLots) {
-            if (!currentParkingLots.isFull()) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

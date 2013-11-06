@@ -37,8 +37,8 @@ public class ParkingChooserTest {
         ParkingLot parkingLot1 = new ParkingLot(2);
         ParkingLot parkingLot2 = new ParkingLot(2);
         ParkingLot parkingLot3 = new ParkingLot(1);
-        parkingLot1.checkIn(new Car("testCar"));
-        parkingLot2.checkIn(new Car("testCar"));
+        parkingLot1.park(new Car("testCar"));
+        parkingLot2.park(new Car("testCar"));
         parkingLots.add(parkingLot1);
         parkingLots.add(parkingLot2);
         parkingLots.add(parkingLot3);

@@ -18,7 +18,7 @@ public class ParkingLot {
         }
     }
 
-    public boolean checkIn(Car car) {
+    public boolean park(Car car) {
         if (isFull()) return false;
         else {
             cars.add(car);
@@ -26,7 +26,7 @@ public class ParkingLot {
         }
     }
 
-    public Boolean checkOut(Car car) {
+    public Boolean unPark(Car car) {
         return cars.remove(car);
     }
 

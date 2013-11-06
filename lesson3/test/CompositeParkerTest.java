@@ -4,17 +4,17 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class ParkingManagerTest {
+public class CompositeParkerTest {
 
-    private ParkingManager parkingManager;
+    private CompositeParker parkingManager;
     private Car car;
     private Parker parker;
-    private ParkingManager bigBoss;
+    private CompositeParker bigBoss;
 
     @Before
     public void setUp() throws Exception {
-        parkingManager = new ParkingManager();
-        bigBoss = new ParkingManager();
+        parkingManager = new CompositeParker();
+        bigBoss = new CompositeParker();
         car = new Car("myCar");
         parker = new Parker();
         parker.parkingLots.add(new ParkingLot(1));
@@ -26,7 +26,7 @@ public class ParkingManagerTest {
     public void should_be_able_to_parking_car() throws Exception {
         parkingManager.parkingLots.add(new ParkingLot(2));
         parkingManager.parkingLots.add(new ParkingLot(2));
-        assertThat(parkingManager.park(car), is(true));
+        assertThat(parkingManager.parkingChooser.choose(parkingManager.parkingLots).park(car), is(true));
     }
 
     @Test
