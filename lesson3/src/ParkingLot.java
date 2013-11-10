@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * User: twer
@@ -37,6 +38,16 @@ public class ParkingLot implements ParkAble{
     @Override
     public boolean isAvailable() {
         return !isFull();
+    }
+
+    @Override
+    public String report() {
+        return null;
+    }
+
+    @Override
+    public List<String> print(int blank) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     boolean isFull() {

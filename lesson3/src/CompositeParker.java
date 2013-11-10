@@ -54,4 +54,34 @@ public class CompositeParker implements ParkAble {
         }
         return false;
     }
+
+    @Override
+    public String report() {
+        String result = "";
+        for (String str : print(0)) {
+            result += str + "\n";
+        }
+        return result;
+    }
+
+    public List<String> print(int blank) {
+        List<String> result = new ArrayList<String>();
+        result.add(getString(blank, "Parker"));
+
+        for (ParkAble parkAble : parkers) {
+            result.addAll(parkAble.print(blank + 1));
+        }
+        for (ParkingLot parkingLot : parkingLots) {
+            result.add(getString(blank + 1, "ParkingLot"));
+        }
+        return result;
+    }
+
+    private String getString(int blank, String parker) {
+        String str = "";
+        for (int times = 0; times < blank; times++) {
+            str += "  ";
+        }
+        return str+ parker;
+    }
 }

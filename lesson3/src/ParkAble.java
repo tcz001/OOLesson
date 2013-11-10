@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * User: twer
  * Date: 11/6/13
@@ -9,4 +11,8 @@ public interface ParkAble {
     Car unPark(Car car);
 
     boolean isAvailable();
+
+    String report();
+
+    List<String> print(int blank);
 }

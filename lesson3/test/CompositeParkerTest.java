@@ -1,6 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -71,5 +72,30 @@ public class CompositeParkerTest {
 
         assertThat(bigBoss.park(car), is(true));
         assertThat(parker.unPark(car), is(car));
+    }
+
+    @Test
+    public void shouldReport() throws Exception {
+        String report =
+                "Parker\n"+//0
+                "  Parker\n"+//1
+                "    Parker\n"+//2
+                "      ParkingLot\n"+
+                "  Parker\n"+//3
+                "    ParkingLot\n"+
+                "  ParkingLot\n";
+
+        CompositeParker parker0 = new CompositeParker();
+        CompositeParker parker1 = new CompositeParker();
+        CompositeParker parker2 = new CompositeParker();
+        CompositeParker parker3 = new CompositeParker();
+        parker0.parkers.add(parker1);
+        parker0.parkers.add(parker3);
+        parker1.parkers.add(parker2);
+        parker2.parkingLots.add(new ParkingLot(10));
+        parker3.parkingLots.add(new ParkingLot(10));
+        parker0.parkingLots.add(new ParkingLot(10));
+        assertThat(parker0.report(), equalTo(report));
+
     }
 }
