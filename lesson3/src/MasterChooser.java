@@ -1,5 +1,5 @@
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * User: twer
@@ -8,11 +8,11 @@ import java.util.Iterator;
  */
 public class MasterChooser implements ParkingChooser {
     @Override
-    public ParkingLot choose(ArrayList<ParkingLot> parkingLots) {
-        Iterator<ParkingLot> parkingLotIterator = parkingLots.iterator();
-        ParkingLot choice = parkingLotIterator.next();
+    public ParkAble choose(List<ParkAble> parkingLots) {
+        Iterator<ParkAble> parkingLotIterator = parkingLots.iterator();
+        ParkingLot choice = (ParkingLot) parkingLotIterator.next();
         while (parkingLotIterator.hasNext()){
-            ParkingLot lot = parkingLotIterator.next();
+            ParkingLot lot = (ParkingLot) parkingLotIterator.next();
             if (lot.getAvailable()!=0 && lot.getUsage() < choice.getUsage())
                 choice = lot;
         }

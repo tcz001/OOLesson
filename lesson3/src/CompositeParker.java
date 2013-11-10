@@ -3,14 +3,13 @@ import java.util.List;
 
 public class CompositeParker implements ParkAble {
     List<ParkAble> parkAbles = new ArrayList<ParkAble>();
-    ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
     ParkingChooser parkingChooser = new SmartChooser();
 
     @Override
-    public ParkAble choose() {
+    public ParkAble assignTo() {
         for (ParkAble parkAble : parkAbles) {
-            if (parkAble.choose() != null) {
-                return parkAble.choose();
+            if (parkAble.assignTo() != parkAble) {
+                return parkAble.assignTo();
             } else if (parkAble.isAvailable()) return parkAble;
         }
         return null;
@@ -18,21 +17,17 @@ public class CompositeParker implements ParkAble {
 
     @Override
     public boolean park(Car car) {
-        ParkAble parkAble = choose();
+        ParkAble parkAble = assignTo();
         if (parkAble != null) {
             return parkAble.park(car);
         } else {
-            return parkingChooser.choose(parkingLots).park(car);
+            return parkingChooser.choose(parkAbles).park(car);
         }
     }
 
     @Override
     public Car unPark(Car car) {
         Car returnCar = null;
-        for (ParkingLot currentParkingLots : parkingLots) {
-            returnCar = currentParkingLots.unPark(car);
-            if (returnCar != null) break;
-        }
         for (ParkAble parker : parkAbles) {
             returnCar = parker.unPark(car);
             if (returnCar != null) break;
@@ -42,8 +37,8 @@ public class CompositeParker implements ParkAble {
 
     @Override
     public boolean isAvailable() {
-        for (ParkingLot currentParkingLots : parkingLots) {
-            if (currentParkingLots.isAvailable()) {
+        for (ParkAble parkAble : parkAbles) {
+            if (parkAble.isAvailable()) {
                 return true;
             }
         }

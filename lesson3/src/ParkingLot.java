@@ -40,8 +40,8 @@ public class ParkingLot implements ParkAble{
     }
 
     @Override
-    public ParkAble choose() {
-        return null;
+    public ParkAble assignTo() {
+        return this;
     }
 
     int getAvailable(){

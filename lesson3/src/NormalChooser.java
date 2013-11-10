@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: twer
@@ -7,8 +7,8 @@ import java.util.ArrayList;
  */
 public class NormalChooser implements ParkingChooser {
     @Override
-    public ParkingLot choose(ArrayList<ParkingLot> parkingLots) {
-        for (ParkingLot parkingLot : parkingLots){
+    public ParkAble choose(List<ParkAble> parkingLots) {
+        for (ParkAble parkingLot : parkingLots){
             if (parkingLot.isAvailable())return parkingLot;
         }
         return null;

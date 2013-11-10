@@ -10,5 +10,5 @@ public interface ParkAble {
 
     boolean isAvailable();
 
-    ParkAble choose();
+    ParkAble assignTo();
 }

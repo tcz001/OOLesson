@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: twer
@@ -6,5 +6,5 @@ import java.util.ArrayList;
  * Time: 8:44 AM
  */
 public interface ParkingChooser {
-    ParkingLot choose(ArrayList<ParkingLot> parkingLots);
+    ParkAble choose(List<ParkAble> parkingLots);
 }

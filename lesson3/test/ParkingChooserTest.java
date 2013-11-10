@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -12,7 +13,7 @@ import static org.junit.Assert.assertThat;
  */
 public class ParkingChooserTest {
     ParkingChooser parkingChooser;
-    ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+    List<ParkAble> parkingLots = new ArrayList<ParkAble>();
     @Test
     public void testNormalChooseer() throws Exception {
         parkingChooser = new NormalChooser();
@@ -20,7 +21,7 @@ public class ParkingChooserTest {
         ParkingLot parkingLot2 = new ParkingLot(2);
         parkingLots.add(parkingLot1);
         parkingLots.add(parkingLot2);
-        assertThat(parkingChooser.choose(parkingLots), is(parkingLot1));
+        assertThat((ParkingLot) parkingChooser.choose(parkingLots), is(parkingLot1));
     }
     @Test
     public void testSmartChooseer() throws Exception {
@@ -29,7 +30,7 @@ public class ParkingChooserTest {
         ParkingLot parkingLot2 = new ParkingLot(2);
         parkingLots.add(parkingLot1);
         parkingLots.add(parkingLot2);
-        assertThat(parkingChooser.choose(parkingLots), is(parkingLot2));
+        assertThat((ParkingLot) parkingChooser.choose(parkingLots), is(parkingLot2));
     }
     @Test
     public void testMasterChooseer() throws Exception {
@@ -42,6 +43,6 @@ public class ParkingChooserTest {
         parkingLots.add(parkingLot1);
         parkingLots.add(parkingLot2);
         parkingLots.add(parkingLot3);
-        assertThat(parkingChooser.choose(parkingLots), is(parkingLot3));
+        assertThat((ParkingLot) parkingChooser.choose(parkingLots), is(parkingLot3));
     }
 }

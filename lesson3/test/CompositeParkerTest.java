@@ -24,15 +24,15 @@ public class CompositeParkerTest {
 
     @Test
     public void should_be_able_to_parking_car() throws Exception {
-        parkingManager.parkingLots.add(new ParkingLot(2));
-        parkingManager.parkingLots.add(new ParkingLot(2));
-        assertThat(parkingManager.parkingChooser.choose(parkingManager.parkingLots).park(car), is(true));
+        parkingManager.parkAbles.add(new ParkingLot(2));
+        parkingManager.parkAbles.add(new ParkingLot(2));
+        assertThat(parkingManager.park(car), is(true));
     }
 
     @Test
     public void should_be_able_to_pickUp_car() throws Exception {
-        parkingManager.parkingLots.add(new ParkingLot(2));
-        parkingManager.parkingLots.add(new ParkingLot(2));
+        parkingManager.parkAbles.add(new ParkingLot(2));
+        parkingManager.parkAbles.add(new ParkingLot(2));
         assertThat(parkingManager.park(car), is(true));
         assertThat(parkingManager.unPark(car), is(car));
     }
@@ -40,8 +40,8 @@ public class CompositeParkerTest {
     @Test
     public void should_give_car_to_parking_boy() throws Exception {
         ParkAble parker2  = new CompositeParker();
-        parker.parkingLots.add(new ParkingLot(1));
-        parker.parkingLots.add(new ParkingLot(2));
+        parker.parkAbles.add(new ParkingLot(1));
+        parker.parkAbles.add(new ParkingLot(2));
         parkingManager.parkAbles.add(parker);
         parkingManager.parkAbles.add(parker2);
         parkingManager.park(car);
