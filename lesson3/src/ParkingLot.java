@@ -45,7 +45,7 @@ public class ParkingLot implements ParkAble{
     }
 
     @Override
-    public String report() {
+    public String report(int number) {
         return "ParkingLot\n";
     }
 

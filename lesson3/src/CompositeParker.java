@@ -46,16 +46,20 @@ public class CompositeParker implements ParkAble {
     }
 
     @Override
-    public String report() {
+    public String report(int number) {
         String result = "Parker\n";
-        int number = 0;
+        number ++;
         for (ParkAble parkAble : parkAbles) {
-            result += addWhiteSpace(number) + parkAble.report();
+            result += addWhiteSpace(number) + parkAble.report(number);
         }
         return result;
     }
 
-    private String addWhiteSpace(int number) {
+    public String report(){
+        return report(0);
+    }
+
+    public String addWhiteSpace(int number) {
         String result = "";
         for (int n = 0; n < number; n++) {
             result += "  ";

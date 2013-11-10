@@ -12,5 +12,5 @@ public interface ParkAble {
 
     ParkAble assignTo();
 
-    String report();
+    String report(int number);
 }
