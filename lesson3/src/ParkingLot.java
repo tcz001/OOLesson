@@ -44,6 +44,11 @@ public class ParkingLot implements ParkAble{
         return this;
     }
 
+    @Override
+    public String report() {
+        return "ParkingLot\n";
+    }
+
     int getAvailable(){
         return maximum-cars.size();
     }

@@ -11,4 +11,6 @@ public interface ParkAble {
     boolean isAvailable();
 
     ParkAble assignTo();
+
+    String report();
 }
