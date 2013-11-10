@@ -2,53 +2,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompositeParker implements ParkAble {
-    public List<ParkAble> parkers = new ArrayList<ParkAble>();
+    List<ParkAble> parkAbles = new ArrayList<ParkAble>();
     ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
     ParkingChooser parkingChooser = new SmartChooser();
 
-    public ParkAble chooseParker() {
-        if (parkers.size()==0)return null;
-        for (ParkAble parker : parkers){
-            if (parker.getClass() == CompositeParker.class){
-                return ((CompositeParker) parker).chooseParker();
-            }
-            if(parker.isAvailable())return parker;
+    @Override
+    public ParkAble choose() {
+        for (ParkAble parkAble : parkAbles) {
+            if (parkAble.choose() != null) {
+                return parkAble.choose();
+            } else if (parkAble.isAvailable()) return parkAble;
         }
         return null;
     }
 
     @Override
     public boolean park(Car car) {
-        ParkAble parker = chooseParker();
-        if(parker == null) {
+        ParkAble parkAble = choose();
+        if (parkAble != null) {
+            return parkAble.park(car);
+        } else {
             return parkingChooser.choose(parkingLots).park(car);
-        }
-        else {
-           return parker.park(car);
         }
     }
 
     @Override
     public Car unPark(Car car) {
-        Car returnCar;
-        for (ParkAble parker : parkers){
-            returnCar = parker.unPark(car);
-            if(returnCar == car)
-                return returnCar;
-        }
+        Car returnCar = null;
         for (ParkingLot currentParkingLots : parkingLots) {
-            if (currentParkingLots.cars.contains(car)) {
-                currentParkingLots.cars.remove(car);
-                return car;
-            }
+            returnCar = currentParkingLots.unPark(car);
+            if (returnCar != null) break;
         }
-        return null;
+        for (ParkAble parker : parkAbles) {
+            returnCar = parker.unPark(car);
+            if (returnCar != null) break;
+        }
+        return returnCar;
     }
 
     @Override
     public boolean isAvailable() {
         for (ParkingLot currentParkingLots : parkingLots) {
-            if (!currentParkingLots.isFull()) {
+            if (currentParkingLots.isAvailable()) {
                 return true;
             }
         }

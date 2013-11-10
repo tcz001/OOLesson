@@ -9,4 +9,6 @@ public interface ParkAble {
     Car unPark(Car car);
 
     boolean isAvailable();
+
+    ParkAble choose();
 }

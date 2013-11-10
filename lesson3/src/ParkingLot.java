@@ -20,7 +20,7 @@ public class ParkingLot implements ParkAble{
 
     @Override
     public boolean park(Car car) {
-        if (isFull()) return false;
+        if (!isAvailable()) return false;
         else {
             cars.add(car);
             return true;
@@ -36,11 +36,12 @@ public class ParkingLot implements ParkAble{
 
     @Override
     public boolean isAvailable() {
-        return !isFull();
+        return getAvailable()!=0;
     }
 
-    boolean isFull() {
-        return getAvailable()==0;
+    @Override
+    public ParkAble choose() {
+        return null;
     }
 
     int getAvailable(){

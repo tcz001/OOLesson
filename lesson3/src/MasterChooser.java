@@ -13,7 +13,7 @@ public class MasterChooser implements ParkingChooser {
         ParkingLot choice = parkingLotIterator.next();
         while (parkingLotIterator.hasNext()){
             ParkingLot lot = parkingLotIterator.next();
-            if (!lot.isFull() && lot.getUsage() < choice.getUsage())
+            if (lot.getAvailable()!=0 && lot.getUsage() < choice.getUsage())
                 choice = lot;
         }
         return choice;

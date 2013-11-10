@@ -9,7 +9,7 @@ public class NormalChooser implements ParkingChooser {
     @Override
     public ParkingLot choose(ArrayList<ParkingLot> parkingLots) {
         for (ParkingLot parkingLot : parkingLots){
-            if (!parkingLot.isFull())return parkingLot;
+            if (parkingLot.isAvailable())return parkingLot;
         }
         return null;
     }

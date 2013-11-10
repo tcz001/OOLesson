@@ -13,7 +13,7 @@ public class SmartChooser implements ParkingChooser {
         ParkingLot choice = parkingLotIterator.next();
         while (parkingLotIterator.hasNext()){
             ParkingLot lot = parkingLotIterator.next();
-            if (!lot.isFull() && lot.getAvailable() > choice.getAvailable())
+            if (lot.getAvailable()!=0 && lot.getAvailable() > choice.getAvailable())
                 choice = lot;
         }
         return choice;
